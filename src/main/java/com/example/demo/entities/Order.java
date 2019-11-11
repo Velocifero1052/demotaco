@@ -9,6 +9,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -21,6 +22,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+
+import com.example.demo.User;
 
 @Data
 @Entity
@@ -42,6 +45,9 @@ public class Order implements Serializable {
 
     @ManyToMany(targetEntity = Taco.class)
     private List<Taco>tacos = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     public void addDesign(Taco design){
         tacos.add(design);
